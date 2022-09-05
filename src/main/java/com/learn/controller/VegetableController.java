@@ -26,50 +26,48 @@ public class VegetableController {
 
 	@Autowired
 	private VegetableService vegetableService;
-	
+
 	@PostMapping
-	public Vegetable saveVegetable(@RequestBody Vegetable vegetable)
-	{
+	public Vegetable saveVegetable(@RequestBody Vegetable vegetable) {
 		return this.vegetableService.saveVegetable(vegetable);
 	}
-	
+
+	@GetMapping("/hello")
+	public String wish() {
+		return "Hello Altaf Welcome to SpringBoot,Heroku Deployed";
+	}
+
 	@GetMapping
-	public List<Vegetable> getAllVegetables()
-	{
+	public List<Vegetable> getAllVegetables() {
 		return this.vegetableService.getAllVegetables();
 	}
-	
+
 	@GetMapping("/{id}")
-	public Vegetable getVegetableById(@PathVariable("id") int id)
-	{
+	public Vegetable getVegetableById(@PathVariable("id") int id) {
 		return this.vegetableService.getVegetableById(id);
 	}
-	
+
 	@PutMapping("/{id}")
-	public Vegetable updateVegetable(@RequestBody Vegetable vegetable,@PathVariable("id") int id)
-	{
+	public Vegetable updateVegetable(@RequestBody Vegetable vegetable, @PathVariable("id") int id) {
 		return this.vegetableService.updateVegetable(vegetable, id);
-				
+
 	}
-	
+
 	@DeleteMapping("/{vid}")
-	public void deleteVegetable(@PathVariable("vid") int id)
-	{
+	public void deleteVegetable(@PathVariable("vid") int id) {
 		this.vegetableService.deleteVegetable(id);
 	}
-	
-	
-	//localhost:8092/vegetable/name?name=Brinjal
-//	@GetMapping("/name")
-//	@ResponseBody
-//	public Vegetable findByName(@RequestParam String name)
-//	{
-//		return vegetableService.findByName(name);
-//	}
-	
+
+	// localhost:8092/vegetable/name?name=Brinjal
+	// @GetMapping("/name")
+	// @ResponseBody
+	// public Vegetable findByName(@RequestParam String name)
+	// {
+	// return vegetableService.findByName(name);
+	// }
+
 	@GetMapping("/name/{name}")
-	public Vegetable findByName(@PathVariable("name") String name)
-	{
+	public Vegetable findByName(@PathVariable("name") String name) {
 		return vegetableService.findByName(name);
 	}
 }
